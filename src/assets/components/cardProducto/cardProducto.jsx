@@ -18,10 +18,11 @@ return(
          <img src={prInfo.imagen} alt={prInfo.nombre} />
         <h4>{nombre}</h4>
         <p>${precio}</p>
+        <div>
         <p>{contador}</p>
         <button onClick={resta}>-</button>
-        <button onClick={suma}>-</button>
-
+        <button onClick={suma}>+</button>
+        </div>
         <button onClick={() =>console.log(`Producto ${nombre} agregado `)}>Agregar al carrito</button>
     </div>
 )
