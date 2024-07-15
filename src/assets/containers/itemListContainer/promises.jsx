@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
-import CardProducto from "../cardProducto/cardProducto";
+import CardProducto from "../../components/Item/Item";
 
 
 const Promises = () => {
-    const[products, setProducts] = useState()
+    const[itemList, setList] = useState()
+    const [cargando, setCargando]= useState(true)
 
     const getProducts = new Promise((resolve, rejected) => {
         const productos = [
             {
                 nombre: 'Crema corporal',
+                categoria : "Cuidados diarios",
                 descripcion:'Tecnología inteligente, piel profundamente nutrida.Acelera la renovación celular.Piel saludable e iluminada.',
                 precio: 12000,
                 id: 1,
@@ -17,6 +19,7 @@ const Promises = () => {
             },
             {
                 nombre: 'Jabones',
+                categoria : "Cuidados diarios",
                 descripcion:'Limpieza cremosa y purificante.Piel perfumada y protegida.Mantiene la hidratación natural de la piel.',
                 precio: 5600,
                 id: 2,
@@ -25,6 +28,7 @@ const Promises = () => {
             },
             {
                 nombre: 'desodorantes',
+                categoria : "Cuidados diarios",
                 descripcion: "Complejo vitaminico e hidratante con Vitamina E, Protección prolongada: protección por 48hs contra los efectos del sudor, No deja residuos blancos en los tejidos oscuros, ni manchas amarillentas en los tejidos blancos ",
                 precio: 3000,
                 id: 3,
@@ -33,6 +37,7 @@ const Promises = () => {
             },
             {
                 nombre: 'Pulpa exfolante',
+                categoria : "Cuidados diarios",
                 descripcion:'Piel renovada e hidratada.Textura cremosa.Remueve lás celulas muertas dejando la piel suave.',
                 precio: 9000,
                 id: 4,
@@ -42,22 +47,23 @@ const Promises = () => {
         ]
 
         setTimeout(() => {
-            productos.length > 0 ? resolve(productos) : rejected('no hay productos')
+            productos.length > 0 ? resolve(productos) : rejected('No hay productos')
         }, 1000);
 
     })
 
     useEffect(() => {
         getProducts
-            .then(res => setProducts(res))
+            .then(res => setList(res))
             .catch(e => console.error(e))
+            .finally(() => setCargando(false))
     }, [])
 
     return (
         <div>
-            
+            {cargando? 'Cargando...' : getProducts?.CardProducto }
             {/* {JSON.stringify(products)} */}
-          {products?.map((pr) => <CardProducto key={pr.id} prInfo= {pr} />)}
+          {itemList?.map((pr) => <CardProducto key={pr.id} prInfo={pr} />)}
         </div>
     )
 

@@ -2,7 +2,7 @@ import './App.css'
 import { useState } from 'react'
 import Navbar from './assets/components/navbar/navbar'
 import ItemListContainer from './assets/containers/itemListContainer/itemListContainer'
-import Promises from './assets/components/promise/promises'
+import Promises from './assets/containers/itemListContainer/promises'
 
 
 
